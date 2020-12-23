@@ -11,8 +11,16 @@ export default class FilmCard extends Component {
                 ></img>
                 <div className="movie-info">
                     <h3>{movie.title}</h3>
-                    <span className="">{movie.vote_average}</span>
-                    <h4>{movie.release_date.slice(0, 4)}</h4>
+                    <span>{movie.release_date.slice(0, 4)}</span>
+                </div>
+                <div>
+                    <button
+                        title={movie.title}
+                        id={movie.id}
+                        onClick={this.props.addToList}
+                    >
+                        Add
+                    </button>
                 </div>
                 {/* <div className="overview">
                     <h3>Overview</h3>

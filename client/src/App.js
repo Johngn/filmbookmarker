@@ -1,8 +1,14 @@
 import React, { Component } from "react";
 import axios from "axios";
-
 import Searchbox from "./components/Searchbox";
 import FilmCard from "./components/FilmCard";
+
+import { Provider } from "react-redux";
+import store from "./store";
+
+import { connect } from "react-redux";
+import { getFilms } from "./actions/filmActions";
+import PropTypes from "prop-types";
 
 import "./App.css";
 
@@ -17,7 +23,9 @@ class App extends Component {
     };
 
     componentDidMount() {
-        this.getMovies(this.state.defaultURL);
+        // this.getMovies(this.state.defaultURL);
+
+        this.props.getFilms();
     }
 
     handleChange = (e) => {
@@ -43,24 +51,46 @@ class App extends Component {
             });
     };
 
+    addToList = (e) => {
+        console.log(e.target.title);
+        console.log(e.target.id);
+
+        axios.post();
+    };
+
     render() {
         const { movies } = this.state;
         return (
-            <div className="App">
-                <Searchbox
-                    handleChange={this.handleChange}
-                    handleSubmit={this.handleSubmit}
-                    getMovies={this.getMovies}
-                    searchValue={this.state.searchValue}
-                />
-                <main id="main">
-                    {movies.map((movie, i) => (
-                        <FilmCard key={movie.id} movie={movie} />
-                    ))}
-                </main>
-            </div>
+            <Provider store={store}>
+                <div className="App">
+                    <Searchbox
+                        handleChange={this.handleChange}
+                        handleSubmit={this.handleSubmit}
+                        getMovies={this.getMovies}
+                        searchValue={this.state.searchValue}
+                    />
+                    <main id="main">
+                        {movies.map((movie, i) => (
+                            <FilmCard
+                                key={movie.id}
+                                movie={movie}
+                                addToList={this.addToList}
+                            />
+                        ))}
+                    </main>
+                </div>
+            </Provider>
         );
     }
 }
 
-export default App;
+App.propTypes = {
+    getFilms: PropTypes.func.isRequired,
+    film: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+    film: state.film,
+});
+
+export default connect(mapStateToProps, { getFilms })(App);
