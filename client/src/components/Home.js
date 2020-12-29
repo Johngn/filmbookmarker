@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import FilmCard from "./FilmCard";
-import { getDefaultFilms } from "../actions/homeActions";
+import { getDefaultFilms } from "../redux/actions/homeActions";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 

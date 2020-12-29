@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { searchFilm } from "../actions/homeActions";
+import { searchFilm } from "../redux/actions/homeActions";
 
 class Searchbox extends Component {
     state = {

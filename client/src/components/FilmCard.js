@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { addFilm } from "../actions/homeActions";
+import { addFilm } from "../redux/actions/homeActions";
 import PropTypes from "prop-types";
 
 class FilmCard extends Component {
