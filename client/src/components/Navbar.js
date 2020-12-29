@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { searchFilm } from "../redux/actions/homeActions";
+import { Link } from "react-router-dom";
 
-class Searchbox extends Component {
+class Navbar extends Component {
     state = {
         searchTerm: "",
     };
@@ -21,6 +22,14 @@ class Searchbox extends Component {
     render() {
         return (
             <header>
+                <nav className="navbar">
+                    <Link className="navbar-link" to="/">
+                        Home
+                    </Link>
+                    <Link className="navbar-link" to="/watchlist">
+                        Watchlist
+                    </Link>
+                </nav>
                 <form onSubmit={this.handleSubmit} id="form">
                     <input
                         type="text"
@@ -30,17 +39,21 @@ class Searchbox extends Component {
                         value={this.state.searchTerm}
                         onChange={this.handleChange}
                     />
-                    <input type="submit" value="Submit" />
+                    <input
+                        className="search-button"
+                        type="submit"
+                        value="Search"
+                    />
                 </form>
             </header>
         );
     }
 }
 
-Searchbox.propTypes = {
+Navbar.propTypes = {
     searchFilm: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({});
 
-export default connect(mapStateToProps, { searchFilm })(Searchbox);
+export default connect(mapStateToProps, { searchFilm })(Navbar);

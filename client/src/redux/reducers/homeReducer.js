@@ -5,7 +5,7 @@ const initialState = {
     films: [],
 };
 
-export default function (state = initialState, action) {
+export default function homeReducer(state = initialState, action) {
     switch (action.type) {
         case DEFAULT_FILMS:
             return {

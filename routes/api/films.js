@@ -25,13 +25,13 @@ router.post("/", (req, res) => {
     newFilm.save().then(film => res.json(film));
 });
 
-// @route   DELETE /api/films
-// @desc    delete film
-// @access  Public
-router.delete("/:id", (req, res) => {
-    Film.findById(req.params.id)
-        .then(film => film.remove().then(() => res.json({ success: true })))
-        .catch(err => res.status(404).json({ success: false }));
-});
+// // @route   DELETE /api/films
+// // @desc    delete film
+// // @access  Public
+// router.delete("/:id", (req, res) => {
+//     Film.findById(req.params.id)
+//         .then(film => film.remove().then(() => res.json({ success: true })))
+//         .catch(err => res.status(404).json({ success: false }));
+// });
 
 module.exports = router;
