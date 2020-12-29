@@ -1,4 +1,5 @@
-import { GET_FILMS, ADD_FILM, DELETE_FILM } from "../actions/types";
+import { GET_FILMS } from "../actions/types";
+// import axios from "axios";
 
 const initialState = {
     films: [

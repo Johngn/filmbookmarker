@@ -1,4 +1,4 @@
-import { GET_FILMS, ADD_FILM, DELETE_FILM } from "./types";
+import { GET_FILMS } from "./types";
 
 export const getFilms = () => {
     return {
