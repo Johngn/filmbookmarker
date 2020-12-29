@@ -3,10 +3,10 @@ const Schema = mongoose.Schema;
 
 // Create schema
 const FilmSchema = new Schema({
-  name: {
-    type: String,
-    required: true,
-  },
+    title: {
+        type: String,
+        required: true,
+    },
 });
 
-module.exports = Item = mongoose.model("film", FilmSchema);
+module.exports = Film = mongoose.model("film", FilmSchema);

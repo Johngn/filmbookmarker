@@ -1,12 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { addFilm } from "../redux/actions/homeActions";
+import { addFilm } from "../redux/actions/watchlistActions";
 import PropTypes from "prop-types";
 
 class FilmCard extends Component {
     addToList = e => {
-        console.log(e.target.title);
-        this.props.addFilm(e.target.title, e.target.id);
+        e.preventDefault();
+
+        const newFilm = {
+            title: e.target.title,
+            id: e.target.id,
+        };
+
+        this.props.addFilm(newFilm);
     };
 
     render() {

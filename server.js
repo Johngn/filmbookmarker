@@ -11,9 +11,9 @@ app.use(bodyParser.json());
 const db = require("./config/keys").mongoURI;
 
 mongoose
-  .connect(db)
-  .then(() => console.log("Mongodb connected"))
-  .catch(() => console.log("Error"));
+    .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log("Mongodb connected"))
+    .catch(() => console.log("Error"));
 
 // Use routes
 app.use("/api/films", films);

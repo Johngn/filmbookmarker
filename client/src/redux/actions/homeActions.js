@@ -36,5 +36,3 @@ export const searchFilm = searchTerm => dispatch => {
             })
         );
 };
-
-export const addFilm = (title, id) => {};
