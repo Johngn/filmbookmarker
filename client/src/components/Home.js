@@ -1,30 +1,21 @@
 import React, { Component } from "react";
 import FilmCard from "./FilmCard";
-import { getFilms } from "../actions/filmActions";
+import { getDefaultFilms } from "../actions/homeActions";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 class Home extends Component {
-    state = {
-        movies: [],
-        defaultURL:
-            "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=0b94b1025e86742975b86c5a81513b54",
-    };
-
     componentDidMount() {
-        // this.getMovies(this.state.defaultURL);
-        this.props.getFilms();
+        this.props.getDefaultFilms();
     }
 
     render() {
+        const films = this.props.films.films;
+
         return (
             <main id="main">
-                {this.props.films.map((film, i) => (
-                    <FilmCard
-                        key={film.id}
-                        film={film}
-                        // addToList={this.addToList}
-                    />
+                {films.map((film, i) => (
+                    <FilmCard key={film.id} film={film} />
                 ))}
             </main>
         );
@@ -32,12 +23,12 @@ class Home extends Component {
 }
 
 Home.propTypes = {
-    getFilms: PropTypes.func.isRequired,
+    getDefaultFilms: PropTypes.func.isRequired,
     films: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     films: state.films,
 });
 
-export default connect(mapStateToProps, { getFilms })(Home);
+export default connect(mapStateToProps, { getDefaultFilms })(Home);
