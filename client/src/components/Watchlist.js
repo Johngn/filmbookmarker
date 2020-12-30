@@ -14,7 +14,7 @@ class Watchlist extends Component {
         const films = this.props.watchlist.films;
 
         return (
-            <main>
+            <main id="watchlist-page">
                 {/* <h1 className="watchlist-heading">Watchlist</h1> */}
                 {this.props.watchlist.loading ? (
                     <Spinner />

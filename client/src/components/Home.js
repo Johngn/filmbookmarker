@@ -1,9 +1,10 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import FilmCard from "./FilmCard";
 import { getDefaultFilms } from "../redux/actions/homeActions";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Spinner from "./Spinner";
+import Searchbox from "./Searchbox";
 
 class Home extends Component {
     componentDidMount() {
@@ -14,15 +15,18 @@ class Home extends Component {
         const films = this.props.films.films;
 
         return (
-            <main id="main">
-                {this.props.films.loading ? (
-                    <Spinner />
-                ) : (
-                    films.map((film, i) => (
-                        <FilmCard key={film.id} film={film} />
-                    ))
-                )}
-            </main>
+            <Fragment>
+                <Searchbox />
+                <main id="home">
+                    {this.props.films.loading ? (
+                        <Spinner />
+                    ) : (
+                        films.map((film, i) => (
+                            <FilmCard key={film.id} film={film} />
+                        ))
+                    )}
+                </main>
+            </Fragment>
         );
     }
 }

@@ -2,12 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { addFilm } from "../redux/actions/watchlistActions";
 import PropTypes from "prop-types";
+import { setAlert } from "../redux/actions/watchlistActions";
 
 class FilmCard extends Component {
-    componentDidMount() {
-        console.log(this.props.film);
-    }
-
     addToList = e => {
         e.preventDefault();
 
@@ -18,8 +15,6 @@ class FilmCard extends Component {
             overview: this.props.film.overview,
         };
 
-        console.log(newFilm);
-
         this.props.addFilm(newFilm);
     };
 
@@ -27,22 +22,21 @@ class FilmCard extends Component {
         const film = this.props.film;
 
         return (
-            <div className="movie">
+            <div className="filmcard">
                 <img
                     src={"http://image.tmdb.org/t/p/w1280" + film.poster_path}
-                    alt={film.title}
                 ></img>
-                <div className="movie-info">
-                    <h3>{film.title}</h3>
-                    <span>{film.release_date.slice(0, 4)}</span>
+                <div className="filmcard-info">
+                    <p>
+                        {film.title} ({film.release_date.slice(0, 4)})
+                    </p>
+                    <button
+                        className="filmcard-add-button"
+                        onClick={this.addToList}
+                    >
+                        ADD TO WATCHLIST
+                    </button>
                 </div>
-                <div>
-                    <button onClick={this.addToList}>Add</button>
-                </div>
-                {/* <div className="overview">
-                    <h3>Overview</h3>
-                    {movie.overview}
-                </div> */}
             </div>
         );
     }
@@ -50,8 +44,7 @@ class FilmCard extends Component {
 
 FilmCard.propTypes = {
     addFilm: PropTypes.func.isRequired,
+    setAlert: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({});
-
-export default connect(mapStateToProps, { addFilm })(FilmCard);
+export default connect(null, { addFilm, setAlert })(FilmCard);
