@@ -3,6 +3,7 @@ import FilmCard from "./FilmCard";
 import { getDefaultFilms } from "../redux/actions/homeActions";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import Spinner from "./Spinner";
 
 class Home extends Component {
     componentDidMount() {
@@ -14,9 +15,13 @@ class Home extends Component {
 
         return (
             <main id="main">
-                {films.map((film, i) => (
-                    <FilmCard key={film.id} film={film} />
-                ))}
+                {this.props.films.loading ? (
+                    <Spinner />
+                ) : (
+                    films.map((film, i) => (
+                        <FilmCard key={film.id} film={film} />
+                    ))
+                )}
             </main>
         );
     }

@@ -8,7 +8,6 @@ const Film = require("../../models/Film");
 // @desc    get all films
 // @access  Public
 router.get("/", (req, res) => {
-    console.log("Getting watchlist films");
     Film.find()
         .then(films => res.json(films))
         .catch(err => console.log(err));
@@ -20,18 +19,20 @@ router.get("/", (req, res) => {
 router.post("/", (req, res) => {
     const newFilm = new Film({
         title: req.body.title,
+        year: req.body.year,
+        overview: req.body.overview,
     });
 
     newFilm.save().then(film => res.json(film));
 });
 
-// // @route   DELETE /api/films
-// // @desc    delete film
-// // @access  Public
-// router.delete("/:id", (req, res) => {
-//     Film.findById(req.params.id)
-//         .then(film => film.remove().then(() => res.json({ success: true })))
-//         .catch(err => res.status(404).json({ success: false }));
-// });
+// @route   DELETE /api/films
+// @desc    delete film
+// @access  Public
+router.delete("/:id", (req, res) => {
+    Film.findById(req.params.id)
+        .then(film => film.remove().then(() => res.json({ success: true })))
+        .catch(err => res.status(404).json({ success: false }));
+});
 
 module.exports = router;

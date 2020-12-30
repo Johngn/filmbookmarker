@@ -4,13 +4,21 @@ import { addFilm } from "../redux/actions/watchlistActions";
 import PropTypes from "prop-types";
 
 class FilmCard extends Component {
+    componentDidMount() {
+        console.log(this.props.film);
+    }
+
     addToList = e => {
         e.preventDefault();
 
         const newFilm = {
-            title: e.target.title,
-            id: e.target.id,
+            title: this.props.film.title,
+            year: this.props.film.release_date.slice(0, 4),
+            id: this.props.film.id,
+            overview: this.props.film.overview,
         };
+
+        console.log(newFilm);
 
         this.props.addFilm(newFilm);
     };
@@ -29,13 +37,7 @@ class FilmCard extends Component {
                     <span>{film.release_date.slice(0, 4)}</span>
                 </div>
                 <div>
-                    <button
-                        title={film.title}
-                        id={film.id}
-                        onClick={this.addToList}
-                    >
-                        Add
-                    </button>
+                    <button onClick={this.addToList}>Add</button>
                 </div>
                 {/* <div className="overview">
                     <h3>Overview</h3>

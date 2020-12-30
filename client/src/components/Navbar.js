@@ -35,7 +35,7 @@ class Navbar extends Component {
                         type="text"
                         id="search"
                         className="search"
-                        placeholder="Search"
+                        placeholder="Enter name of film"
                         value={this.state.searchTerm}
                         onChange={this.handleChange}
                     />

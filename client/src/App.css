@@ -31,6 +31,7 @@ header {
     padding: 0.5rem 1rem;
     margin-right: 5px;
     color: #fff;
+    width: 300px;
 }
 
 .search-button {
@@ -46,7 +47,7 @@ header {
 }
 
 .search::placeholder {
-    /* color: #7378c5; */
+    color: #7378c5;
 }
 
 .navbar {
@@ -144,8 +145,29 @@ header {
 .watchlist {
     color: #fff;
     list-style-type: none;
+    width: 600px;
+    max-width: 95%;
 }
-.watchlist-item {
-    color: #fff;
-    list-style-type: none;
+.watchlist-item-main {
+    height: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.watchlist-delete-button {
+    height: 80%;
+    cursor: pointer;
+}
+.watchlist-item-title {
+    cursor: pointer;
+}
+
+/* SPINNER */
+
+.spinner-container {
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

@@ -7,6 +7,14 @@ const FilmSchema = new Schema({
         type: String,
         required: true,
     },
+    year: {
+        type: String,
+        required: true,
+    },
+    overview: {
+        type: String,
+        required: true,
+    },
 });
 
 module.exports = Film = mongoose.model("film", FilmSchema);

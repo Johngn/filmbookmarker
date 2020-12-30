@@ -1,4 +1,9 @@
-import { ADD_FILM, WATCHLIST_LOADING, GET_WATCHLIST } from "./types";
+import {
+    ADD_FILM,
+    WATCHLIST_LOADING,
+    GET_WATCHLIST,
+    DELETE_FILM,
+} from "./types";
 import axios from "axios";
 
 export const setWatchlistLoading = () => {
@@ -21,10 +26,20 @@ export const getWatchlistFilms = () => dispatch => {
 export const addFilm = newFilm => dispatch => {
     dispatch(setWatchlistLoading());
 
-    axios.post("/api/films", newFilm).then(res =>
+    axios.post("/api/films", newFilm).then(() =>
         dispatch({
             type: ADD_FILM,
-            payload: res.data.results,
+        })
+    );
+};
+
+export const deleteWatchlistFilm = filmId => dispatch => {
+    dispatch(setWatchlistLoading());
+
+    axios.delete(`/api/films/${filmId}`).then(res =>
+        dispatch({
+            type: DELETE_FILM,
+            payload: filmId,
         })
     );
 };
