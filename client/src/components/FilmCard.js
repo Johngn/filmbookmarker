@@ -19,23 +19,42 @@ class FilmCard extends Component {
     };
 
     render() {
-        const film = this.props.film;
+        const {
+            title,
+            id,
+            overview,
+            poster_path,
+            release_date,
+        } = this.props.film;
 
         return (
-            <div className="filmcard">
-                <img
-                    src={"http://image.tmdb.org/t/p/w1280" + film.poster_path}
-                ></img>
-                <div className="filmcard-info">
-                    <p>
-                        {film.title} ({film.release_date.slice(0, 4)})
-                    </p>
+            <div id={id} className="filmcard">
+                <div className="filmcard-left">
+                    <div className="filmcard-image-contaienr">
+                        <img
+                            className="filmcard-image"
+                            src={
+                                "http://image.tmdb.org/t/p/w1280" + poster_path
+                            }
+                            alt=""
+                        ></img>
+                    </div>
                     <button
                         className="filmcard-add-button"
                         onClick={this.addToList}
                     >
                         ADD TO WATCHLIST
                     </button>
+                </div>
+                <div className="filmcard-info">
+                    <div>
+                        <h4 className="filmcard-title">
+                            {title} ({release_date.slice(0, 4)})
+                        </h4>
+                        <p className="filmcard-overview">
+                            {overview.substring(0, 500)}
+                        </p>
+                    </div>
                 </div>
             </div>
         );

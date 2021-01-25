@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import FilmCard from "./FilmCard";
 import { getDefaultFilms } from "../redux/actions/homeActions";
 import PropTypes from "prop-types";
@@ -15,7 +15,7 @@ class Home extends Component {
         const films = this.props.films.films;
 
         return (
-            <Fragment>
+            <div className="container">
                 <Searchbox />
                 <main id="home">
                     {this.props.films.loading ? (
@@ -26,7 +26,7 @@ class Home extends Component {
                         ))
                     )}
                 </main>
-            </Fragment>
+            </div>
         );
     }
 }

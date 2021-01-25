@@ -7,7 +7,7 @@ class Navbar extends Component {
             <header>
                 <nav className="navbar">
                     <Link className="navbar-link" to="/">
-                        Home
+                        Search
                     </Link>
                     <Link className="navbar-link" to="/watchlist">
                         Watchlist
