@@ -3,6 +3,10 @@ const Schema = mongoose.Schema;
 
 // Create schema
 const FilmSchema = new Schema({
+    id: {
+        type: String,
+        required: true,
+    },
     title: {
         type: String,
         required: true,
@@ -14,6 +18,10 @@ const FilmSchema = new Schema({
     overview: {
         type: String,
         required: true,
+    },
+    poster_path: {
+        type: String,
+        require: true,
     },
 });
 

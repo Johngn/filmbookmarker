@@ -13,11 +13,12 @@ class WatchlistFilm extends Component {
     };
 
     deleteWatchlistFilm = e => {
+        this.setState({ overview: false });
         this.props.deleteWatchlistFilm(e.target.value);
     };
 
     render() {
-        const film = this.props.film;
+        const { title, year, overview, poster_path, _id } = this.props.film;
 
         return (
             <li className="watchlist-list-item">
@@ -26,10 +27,10 @@ class WatchlistFilm extends Component {
                         onClick={this.showOverview}
                         className="watchlist-item-title"
                     >
-                        {film.title} ({film.year})
+                        {title} ({year})
                     </h3>
                     <button
-                        value={film._id}
+                        value={_id}
                         onClick={this.deleteWatchlistFilm}
                         className="watchlist-delete-button"
                     >
@@ -37,8 +38,15 @@ class WatchlistFilm extends Component {
                     </button>
                 </div>
                 {this.state.overview ? (
-                    <div>
-                        <p>{film.overview}</p>
+                    <div className="watchlist-item-dropdown">
+                        <div className="watchlist-image-container">
+                            <img
+                                className="watchlist-image"
+                                src={`http://image.tmdb.org/t/p/w1280${poster_path}`}
+                                alt=""
+                            ></img>
+                        </div>
+                        <p className="watchlist-text">{overview}</p>
                     </div>
                 ) : (
                     ""

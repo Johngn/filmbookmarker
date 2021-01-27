@@ -17,13 +17,24 @@ router.get("/", (req, res) => {
 // @desc    add film to watchlist
 // @access  Public
 router.post("/", (req, res) => {
-    const newFilm = new Film({
-        title: req.body.title,
-        year: req.body.year,
-        overview: req.body.overview,
-    });
+    Film.exists({ id: req.body.id }, (err, filmExists) => {
+        if (!filmExists) {
+            const newFilm = new Film({
+                id: req.body.id,
+                title: req.body.title,
+                year: req.body.year,
+                overview: req.body.overview,
+                poster_path: req.body.poster_path,
+            });
 
-    newFilm.save().then(film => res.json(film));
+            newFilm.save().then(film => res.json(film));
+        } else {
+            res.status(404).json({
+                success: false,
+                message: "Film already on watchlist",
+            });
+        }
+    });
 });
 
 // @route   DELETE /api/films

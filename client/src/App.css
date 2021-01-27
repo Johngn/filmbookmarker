@@ -190,6 +190,20 @@ header {
     justify-content: space-between;
     align-items: center;
 }
+
+.watchlist-item-dropdown {
+    display: flex;
+}
+
+.watchlist-image {
+    width: 150px;
+    padding: 5px;
+}
+
+.watchlist-text {
+    padding: 5px;
+}
+
 .watchlist-item-title {
     font-size: 18px;
 }
@@ -234,4 +248,9 @@ header {
     position: fixed;
     top: 0;
     right: 0;
+}
+
+.red {
+    background: rgb(206, 0, 0);
+    color: #fff;
 }

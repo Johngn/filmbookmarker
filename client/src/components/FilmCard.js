@@ -9,10 +9,11 @@ class FilmCard extends Component {
         e.preventDefault();
 
         const newFilm = {
+            id: this.props.film.id,
             title: this.props.film.title,
             year: this.props.film.release_date.slice(0, 4),
-            id: this.props.film.id,
             overview: this.props.film.overview,
+            poster_path: this.props.film.poster_path,
         };
 
         this.props.addFilm(newFilm);
@@ -33,9 +34,7 @@ class FilmCard extends Component {
                     <div className="filmcard-image-contaienr">
                         <img
                             className="filmcard-image"
-                            src={
-                                "http://image.tmdb.org/t/p/w1280" + poster_path
-                            }
+                            src={`http://image.tmdb.org/t/p/w1280${poster_path}`}
                             alt=""
                         ></img>
                     </div>

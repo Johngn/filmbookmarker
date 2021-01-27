@@ -1,12 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import classNames from "classnames";
 
 const Alert = ({ alerts }) =>
     alerts !== null &&
     alerts.length > 0 &&
     alerts.map(alert => (
-        <div className="alert" key={alert.id}>
+        <div
+            className={classNames("alert", {
+                red: alert.alertType === "failure",
+            })}
+            key={alert.id}
+        >
             {alert.msg}
         </div>
     ));

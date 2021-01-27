@@ -27,29 +27,29 @@ export const setAlert = (msg, alertType) => dispatch => {
 };
 
 export const addFilm = newFilm => dispatch => {
-    dispatch(setWatchlistLoading());
-
     axios
         .post("/api/films", newFilm)
         .then(
-            () =>
-                dispatch({
-                    type: ADD_FILM,
-                }),
+            dispatch({
+                type: ADD_FILM,
+            }),
             dispatch(setAlert("Film added to watchlist", "success"))
         )
-        .catch(err => console.log(err));
+        .catch(
+            err => console.log(err)
+            // dispatch(setAlert("Film already on watchlist", "failure"))
+        );
 };
 
 export const getWatchlistFilms = () => dispatch => {
     dispatch(setWatchlistLoading());
 
-    axios.get("/api/films").then(res =>
+    axios.get("/api/films").then(res => {
         dispatch({
             type: GET_WATCHLIST,
             payload: res.data,
-        })
-    );
+        });
+    });
 };
 
 export const deleteWatchlistFilm = filmId => dispatch => {
