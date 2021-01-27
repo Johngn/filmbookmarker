@@ -36,8 +36,8 @@ export const addFilm = newFilm => dispatch => {
             dispatch(setAlert("Film added to watchlist", "success"))
         )
         .catch(
-            err => console.log(err)
-            // dispatch(setAlert("Film already on watchlist", "failure"))
+            err => console.log(err),
+            dispatch(setAlert("Film already on watchlist", "failure"))
         );
 };
 

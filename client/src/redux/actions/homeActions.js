@@ -12,7 +12,7 @@ export const getDefaultFilms = () => dispatch => {
 
     axios
         .get(
-            "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=0b94b1025e86742975b86c5a81513b54"
+            `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${process.env.REACT_APP_THEMOVIEDB_API_KEY}`
         )
         .then(res =>
             dispatch({
@@ -27,7 +27,7 @@ export const searchFilm = searchTerm => dispatch => {
 
     axios
         .get(
-            `https://api.themoviedb.org/3/search/movie?api_key=0b94b1025e86742975b86c5a81513b54&query="${searchTerm}"`
+            `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_THEMOVIEDB_API_KEY}&query="${searchTerm}"`
         )
         .then(res =>
             dispatch({
