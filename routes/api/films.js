@@ -29,7 +29,7 @@ router.post("/", (req, res) => {
 
             newFilm.save().then(film => res.json(film));
         } else {
-            res.status(404).json({
+            return res.status(400).json({
                 success: false,
                 message: "Film already on watchlist",
             });

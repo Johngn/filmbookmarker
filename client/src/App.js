@@ -5,6 +5,7 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import Watchlist from "./components/Watchlist";
+import Register from "./components/auth/Register";
 import Alert from "./components/Alert";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
@@ -16,6 +17,7 @@ export default class App extends Component {
                     <Alert />
                     <Router>
                         <Navbar />
+                        <Route exact path="/register" component={Register} />
                         <Route exact path="/" component={Home} />
                         <Route exact path="/watchlist" component={Watchlist} />
                     </Router>
