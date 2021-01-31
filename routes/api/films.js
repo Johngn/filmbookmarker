@@ -1,13 +1,14 @@
 const express = require("express");
 const router = express.Router();
+const auth = require("../../middleware/auth");
 
 // Film model
 const Film = require("../../models/Film");
 
 // @route   GET /api/films
-// @desc    get all films
+// @desc    get all films on watchlist
 // @access  Public
-router.get("/", (req, res) => {
+router.get("/", auth, (req, res) => {
     Film.find()
         .then(films => res.json(films))
         .catch(err => console.log(err));
@@ -16,7 +17,7 @@ router.get("/", (req, res) => {
 // @route   POST /api/films
 // @desc    add film to watchlist
 // @access  Public
-router.post("/", (req, res) => {
+router.post("/", auth, (req, res) => {
     Film.exists({ id: req.body.id }, (err, filmExists) => {
         if (!filmExists) {
             const newFilm = new Film({
@@ -40,7 +41,7 @@ router.post("/", (req, res) => {
 // @route   DELETE /api/films
 // @desc    delete film
 // @access  Public
-router.delete("/:id", (req, res) => {
+router.delete("/:id", auth, (req, res) => {
     Film.findById(req.params.id)
         .then(film => film.remove().then(() => res.json({ success: true })))
         .catch(err => res.status(404).json({ success: false }));
