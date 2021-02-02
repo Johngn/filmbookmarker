@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 
 const films = require("./routes/api/films");
 const users = require("./routes/api/users");
@@ -9,6 +10,7 @@ const auth = require("./routes/api/auth");
 const app = express();
 
 app.use(bodyParser.json());
+app.use(cors());
 
 const db = require("./config/keys").mongoURI;
 

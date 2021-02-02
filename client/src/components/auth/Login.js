@@ -1,38 +1,32 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { registerUser } from "../../redux/actions/authActions";
-import "./register.css";
-import { setAlert } from "../../redux/actions/watchlistActions";
+import { loginUser } from "../../redux/actions/authActions";
+import "./login.css";
 
-class Register extends Component {
+class Login extends Component {
     state = {
         email: "",
         password: "",
-        password2: "",
     };
 
     inputChange = e => {
         this.setState({ [e.target.name]: e.target.value });
     };
 
-    registerUser = e => {
+    loginUser = e => {
         e.preventDefault();
 
-        const { email, password, password2 } = this.state;
+        const { email, password } = this.state;
 
-        if (password !== password2) {
-            this.props.setAlert("Passwords do not match", "failure");
-        } else {
-            this.props.registerUser({ email, password });
-        }
+        this.props.loginUser({ email, password });
     };
 
     render() {
         return (
             <div className="register-form-container">
-                <h3 className="register-form-header">Register</h3>
-                <form onSubmit={this.registerUser} className="register-form">
+                <h3 className="register-form-header">Login</h3>
+                <form onSubmit={this.loginUser} className="register-form">
                     <div className="register-form-item">
                         <label className="register-form-label">Email:</label>
                         <input
@@ -54,18 +48,6 @@ class Register extends Component {
                         ></input>
                     </div>
                     <div className="register-form-item">
-                        <label className="register-form-label">
-                            Confirm Password:
-                        </label>
-                        <input
-                            name="password2"
-                            value={this.state.password2}
-                            onChange={this.inputChange}
-                            className="register-form-input"
-                            type="password"
-                        ></input>
-                    </div>
-                    <div className="register-form-item">
                         <button className="register-form-button">Submit</button>
                     </div>
                 </form>
@@ -74,9 +56,8 @@ class Register extends Component {
     }
 }
 
-Register.propTypes = {
-    registerUser: PropTypes.func.isRequired,
-    setAlert: PropTypes.func.isRequired,
+Login.propTypes = {
+    loginUser: PropTypes.func.isRequired,
 };
 
-export default connect(null, { registerUser, setAlert })(Register);
+export default connect(null, { loginUser })(Login);
