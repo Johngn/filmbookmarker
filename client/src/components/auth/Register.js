@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { registerUser } from "../../redux/actions/authActions";
 import "./register.css";
 import { setAlert } from "../../redux/actions/watchlistActions";
+import { Redirect } from "react-router-dom";
 
 class Register extends Component {
     state = {
@@ -29,6 +30,10 @@ class Register extends Component {
     };
 
     render() {
+        if (this.props.isAuthenticated) {
+            return <Redirect to="/" />;
+        }
+
         return (
             <div className="register-form-container">
                 <h3 className="register-form-header">Register</h3>
@@ -77,6 +82,11 @@ class Register extends Component {
 Register.propTypes = {
     registerUser: PropTypes.func.isRequired,
     setAlert: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool.isRequired,
 };
 
-export default connect(null, { registerUser, setAlert })(Register);
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, { registerUser, setAlert })(Register);

@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import WatchlistFilm from "./WatchlistFilm";
 import Spinner from "./Spinner";
+import { Redirect } from "react-router-dom";
 
 class Watchlist extends Component {
     componentDidMount() {
@@ -11,6 +12,10 @@ class Watchlist extends Component {
     }
 
     render() {
+        if (!this.props.isAuthenticated) {
+            return <Redirect to="/login" />;
+        }
+
         const films = this.props.watchlist.films;
 
         return (
@@ -33,10 +38,12 @@ class Watchlist extends Component {
 Watchlist.propTypes = {
     getWatchlistFilms: PropTypes.func.isRequired,
     watchlist: PropTypes.object.isRequired,
+    isAuthenticated: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({
     watchlist: state.watchlist,
+    isAuthenticated: state.auth.isAuthenticated,
 });
 
 export default connect(mapStateToProps, { getWatchlistFilms })(Watchlist);

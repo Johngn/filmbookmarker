@@ -72,6 +72,9 @@ header {
 }
 
 .navbar {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
     font-size: 20px;
     padding: 5px;
 }

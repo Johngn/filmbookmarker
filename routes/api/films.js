@@ -7,7 +7,7 @@ const Film = require("../../models/Film");
 
 // @route   GET /api/films
 // @desc    get all films on watchlist
-// @access  Public
+// @access  Private
 router.get("/", auth, (req, res) => {
     Film.find()
         .then(films => res.json(films))
@@ -16,7 +16,7 @@ router.get("/", auth, (req, res) => {
 
 // @route   POST /api/films
 // @desc    add film to watchlist
-// @access  Public
+// @access  Private
 router.post("/", auth, (req, res) => {
     Film.exists({ id: req.body.id }, (err, filmExists) => {
         if (!filmExists) {
@@ -40,7 +40,7 @@ router.post("/", auth, (req, res) => {
 
 // @route   DELETE /api/films
 // @desc    delete film
-// @access  Public
+// @access  Private
 router.delete("/:id", auth, (req, res) => {
     Film.findById(req.params.id)
         .then(film => film.remove().then(() => res.json({ success: true })))

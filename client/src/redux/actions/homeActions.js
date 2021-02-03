@@ -10,6 +10,8 @@ export const setHomeLoading = () => {
 export const getDefaultFilms = () => dispatch => {
     dispatch(setHomeLoading());
 
+    delete axios.defaults.headers.common["x-auth-token"]; // This stops CORS error
+
     axios
         .get(
             `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${process.env.REACT_APP_THEMOVIEDB_API_KEY}`
@@ -24,6 +26,8 @@ export const getDefaultFilms = () => dispatch => {
 
 export const searchFilm = searchTerm => dispatch => {
     dispatch(setHomeLoading());
+
+    delete axios.defaults.headers.common["x-auth-token"]; // This stops CORS error
 
     axios
         .get(

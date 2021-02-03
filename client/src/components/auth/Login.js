@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { loginUser } from "../../redux/actions/authActions";
+import { loginUser, logout } from "../../redux/actions/authActions";
 import "./login.css";
+import { Redirect } from "react-router-dom";
 
 class Login extends Component {
     state = {
@@ -23,6 +24,10 @@ class Login extends Component {
     };
 
     render() {
+        if (this.props.isAuthenticated) {
+            return <Redirect to="/" />;
+        }
+
         return (
             <div className="register-form-container">
                 <h3 className="register-form-header">Login</h3>
@@ -58,6 +63,12 @@ class Login extends Component {
 
 Login.propTypes = {
     loginUser: PropTypes.func.isRequired,
+    logout: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool.isRequired,
 };
 
-export default connect(null, { loginUser })(Login);
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, { loginUser, logout })(Login);

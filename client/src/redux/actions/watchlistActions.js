@@ -8,6 +8,7 @@ import {
 } from "./types";
 import axios from "axios";
 import { v4 as uuid } from "uuid";
+// import { loadUser } from ".//authActions";
 
 export const setWatchlistLoading = () => {
     return {
@@ -47,6 +48,8 @@ export const addFilm = newFilm => dispatch => {
 
 export const getWatchlistFilms = () => dispatch => {
     dispatch(setWatchlistLoading());
+
+    // loadUser();
 
     axios.get("/api/films").then(res => {
         dispatch({
