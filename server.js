@@ -13,7 +13,7 @@ const app = express();
 app.use(function (req, res, next) {
     res.setHeader(
         "Content-Security-Policy",
-        "default-src 'self' https://api.themoviedb.org"
+        "default-src * 'self' https://api.themoviedb.org"
     );
     return next();
 });
