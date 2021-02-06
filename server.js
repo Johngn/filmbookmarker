@@ -18,6 +18,14 @@ app.use(function (req, res, next) {
     return next();
 });
 
+app.use(function (req, res, next) {
+    res.setHeader(
+        "Content-Security-Policy",
+        "default-src 'self' https://api.themoviedb.org; font-src 'self'; img-src 'self'; script-src 'self'; style-src 'self'; frame-src 'self'"
+    );
+    next();
+});
+
 app.use(bodyParser.json());
 app.use(cors());
 
