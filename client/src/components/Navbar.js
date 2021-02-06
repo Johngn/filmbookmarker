@@ -5,12 +5,8 @@ import PropTypes from "prop-types";
 import { logout } from "../redux/actions/authActions";
 
 class Navbar extends Component {
-    componentDidMount() {
-        console.log(this.props.location.pathname);
-    }
-
     render() {
-        const { isAuthenticated, loading } = this.props.auth;
+        const { isAuthenticated } = this.props.auth;
 
         return (
             <header>
@@ -30,13 +26,12 @@ class Navbar extends Component {
 
                     {isAuthenticated ? (
                         <div>
-                            <a
+                            <button
                                 onClick={this.props.logout}
-                                className="navbar-link"
-                                href="#!"
+                                className="navbar-logout"
                             >
                                 Logout
-                            </a>
+                            </button>
                         </div>
                     ) : (
                         <div style={{ marginLeft: "auto" }}>

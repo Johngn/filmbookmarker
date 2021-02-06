@@ -41,15 +41,12 @@ export const addFilm = newFilm => dispatch => {
             }
         })
         .catch(err => {
-            console.log(err);
             dispatch(setAlert("Film already on watchlist", "failure"));
         });
 };
 
 export const getWatchlistFilms = () => dispatch => {
     dispatch(setWatchlistLoading());
-
-    // loadUser();
 
     axios.get("/api/films").then(res => {
         dispatch({

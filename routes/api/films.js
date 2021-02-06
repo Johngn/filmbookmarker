@@ -4,38 +4,56 @@ const auth = require("../../middleware/auth");
 
 // Film model
 const Film = require("../../models/Film");
+const User = require("../../models/User");
 
 // @route   GET /api/films
-// @desc    get all films on watchlist
+// @desc    get current users watchlist
 // @access  Private
-router.get("/", auth, (req, res) => {
-    Film.find()
-        .then(films => res.json(films))
-        .catch(err => console.log(err));
+router.get("/", auth, async (req, res) => {
+    try {
+        const watchlist = await Film.find({ user: req.user.id });
+
+        res.json(watchlist);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send("Server error");
+    }
 });
 
 // @route   POST /api/films
 // @desc    add film to watchlist
 // @access  Private
-router.post("/", auth, (req, res) => {
-    Film.exists({ id: req.body.id }, (err, filmExists) => {
-        if (!filmExists) {
-            const newFilm = new Film({
-                id: req.body.id,
-                title: req.body.title,
-                year: req.body.year,
-                overview: req.body.overview,
-                poster_path: req.body.poster_path,
-            });
+router.post("/", auth, async (req, res) => {
+    Film.exists(
+        {
+            title: req.body.title,
+            user: req.user.id,
+            overview: req.body.overview,
+        },
+        (err, filmExists) => {
+            if (!filmExists) {
+                try {
+                    const newFilm = new Film({
+                        user: req.user.id,
+                        title: req.body.title,
+                        year: req.body.year,
+                        overview: req.body.overview,
+                        poster_path: req.body.poster_path,
+                    });
 
-            newFilm.save().then(film => res.json(film));
-        } else {
-            return res.status(400).json({
-                success: false,
-                message: "Film already on watchlist",
-            });
+                    newFilm.save().then(film => res.json(film));
+                } catch (err) {
+                    console.log(err.message);
+                    res.status(500).send("Server error");
+                }
+            } else {
+                return res.status(400).json({
+                    success: false,
+                    message: "Film already on your watchlist",
+                });
+            }
         }
-    });
+    );
 });
 
 // @route   DELETE /api/films

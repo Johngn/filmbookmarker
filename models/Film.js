@@ -3,9 +3,9 @@ const Schema = mongoose.Schema;
 
 // Create schema
 const FilmSchema = new Schema({
-    id: {
-        type: String,
-        required: true,
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: "user",
     },
     title: {
         type: String,

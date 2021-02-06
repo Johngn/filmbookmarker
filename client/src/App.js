@@ -8,9 +8,10 @@ import Watchlist from "./components/Watchlist";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import Alert from "./components/Alert";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { loadUser } from "./redux/actions/authActions";
 import setAuthToken from "./utils/setAuthToken";
+import PrivateRoute from "./components/routing/PrivateRoute";
 
 if (localStorage.token) {
     setAuthToken(localStorage.token);
@@ -28,10 +29,20 @@ export default class App extends Component {
                     <Alert />
                     <Router>
                         <Navbar />
-                        <Route exact path="/register" component={Register} />
-                        <Route exact path="/login" component={Login} />
-                        <Route exact path="/" component={Home} />
-                        <Route exact path="/watchlist" component={Watchlist} />
+                        <Switch>
+                            <Route
+                                exact
+                                path="/register"
+                                component={Register}
+                            />
+                            <Route exact path="/login" component={Login} />
+                            <PrivateRoute exact path="/" component={Home} />
+                            <PrivateRoute
+                                exact
+                                path="/watchlist"
+                                component={Watchlist}
+                            />
+                        </Switch>
                     </Router>
                 </div>
             </Provider>

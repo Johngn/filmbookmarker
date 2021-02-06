@@ -12,10 +12,7 @@ const UserSchema = new Schema({
         type: String,
         required: true,
     },
-    date: {
-        type: Date,
-        default: Date.now,
-    },
+    films: [{ type: Schema.Types.ObjectId, ref: "film" }],
 });
 
 module.exports = User = mongoose.model("user", UserSchema);
