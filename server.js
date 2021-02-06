@@ -10,6 +10,14 @@ const auth = require("./routes/api/auth");
 
 const app = express();
 
+app.use(function (req, res, next) {
+    res.setHeader(
+        "Content-Security-Policy",
+        "script-src 'self' https://api.themoviedb.org"
+    );
+    return next();
+});
+
 app.use(bodyParser.json());
 app.use(cors());
 
