@@ -3,7 +3,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 import "./App.css";
 import Navbar from "./components/Navbar";
-import Home from "./components/Home";
+import Search from "./components/Search";
 import Watchlist from "./components/Watchlist";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
@@ -36,7 +36,7 @@ export default class App extends Component {
                                 component={Register}
                             />
                             <Route exact path="/login" component={Login} />
-                            <PrivateRoute exact path="/" component={Home} />
+                            <PrivateRoute exact path="/" component={Search} />
                             <PrivateRoute
                                 exact
                                 path="/watchlist"

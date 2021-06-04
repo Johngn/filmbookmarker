@@ -10,35 +10,35 @@ export const setHomeLoading = () => {
 export const getDefaultFilms = () => async dispatch => {
     dispatch(setHomeLoading());
 
-    // const token = axios.defaults.headers.common["x-auth-token"];
-    // delete axios.defaults.headers.common["x-auth-token"]; // This stops CORS error
+    const token = axios.defaults.headers.common["x-auth-token"];
+    delete axios.defaults.headers.common["x-auth-token"]; // This stops CORS error
 
-    // const res = await axios.get(
-    //     `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${process.env.REACT_APP_THEMOVIEDB_API_KEY}`
-    // );
+    const res = await axios.get(
+        `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${process.env.REACT_APP_THEMOVIEDB_API_KEY}`
+    );
 
-    // axios.defaults.headers.common["x-auth-token"] = token;
+    axios.defaults.headers.common["x-auth-token"] = token;
 
-    // dispatch({
-    //     type: DEFAULT_FILMS,
-    //     payload: res.data.results,
-    // });
+    dispatch({
+        type: DEFAULT_FILMS,
+        payload: res.data.results,
+    });
 };
 
 export const searchFilm = searchTerm => async dispatch => {
     dispatch(setHomeLoading());
 
-    // const token = axios.defaults.headers.common["x-auth-token"];
-    // delete axios.defaults.headers.common["x-auth-token"]; // This stops CORS error
+    const token = axios.defaults.headers.common["x-auth-token"];
+    delete axios.defaults.headers.common["x-auth-token"]; // This stops CORS error
 
-    // const res = await axios.get(
-    //     `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_THEMOVIEDB_API_KEY}&query="${searchTerm}"`
-    // );
+    const res = await axios.get(
+        `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_THEMOVIEDB_API_KEY}&query="${searchTerm}"`
+    );
 
-    // axios.defaults.headers.common["x-auth-token"] = token;
+    axios.defaults.headers.common["x-auth-token"] = token;
 
-    // dispatch({
-    //     type: SEARCH_FILM,
-    //     payload: res.data.results,
-    // });
+    dispatch({
+        type: SEARCH_FILM,
+        payload: res.data.results,
+    });
 };

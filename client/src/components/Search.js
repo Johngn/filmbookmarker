@@ -5,18 +5,13 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Spinner from "./Spinner";
 import Searchbox from "./Searchbox";
-import { Redirect } from "react-router-dom";
 
-class Home extends Component {
+class Search extends Component {
     componentDidMount() {
         this.props.getDefaultFilms();
     }
 
     render() {
-        if (!this.props.isAuthenticated) {
-            return <Redirect to="/login" />;
-        }
-
         const films = this.props.films.films;
 
         return (
@@ -36,7 +31,7 @@ class Home extends Component {
     }
 }
 
-Home.propTypes = {
+Search.propTypes = {
     getDefaultFilms: PropTypes.func.isRequired,
     films: PropTypes.object.isRequired,
     isAuthenticated: PropTypes.bool.isRequired,
@@ -47,4 +42,4 @@ const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated,
 });
 
-export default connect(mapStateToProps, { getDefaultFilms })(Home);
+export default connect(mapStateToProps, { getDefaultFilms })(Search);

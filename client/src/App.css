@@ -248,6 +248,13 @@ header {
     margin-left: 10px;
 }
 
+.watchlist-empty-container {
+    color: #fff;
+    margin-top: 100px;
+    /* max-width: 400px; */
+    text-align: center;
+}
+
 /* SPINNER */
 
 .spinner-container {
