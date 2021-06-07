@@ -1,11 +1,11 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 // Create schema
 const FilmSchema = new Schema({
     user: {
         type: Schema.Types.ObjectId,
-        ref: "user",
+        ref: 'user',
     },
     title: {
         type: String,
@@ -25,4 +25,4 @@ const FilmSchema = new Schema({
     },
 });
 
-module.exports = Film = mongoose.model("film", FilmSchema);
+module.exports = Film = mongoose.model('film', FilmSchema);
