@@ -9,7 +9,7 @@ const FilmSchema = new Schema({
   },
   id: {
     type: Number,
-    required: true,
+    required: false,
   },
   title: {
     type: String,

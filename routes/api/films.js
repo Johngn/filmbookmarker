@@ -10,10 +10,8 @@ const User = require('../../models/User');
 // @desc    get current users watchlist
 // @access  Private
 router.get('/:userID', async (req, res) => {
-  console.log(req.params.userID);
   try {
     const watchlist = await Film.find({ user: req.params.userID });
-    console.log(watchlist);
 
     res.json(watchlist);
   } catch (err) {
@@ -42,7 +40,10 @@ router.post('/', auth, async (req, res) => {
             year: req.body.year,
             overview: req.body.overview,
             poster_path: req.body.poster_path,
+            runtime: req.body.runtime,
           });
+
+          console.log(newFilm);
 
           newFilm.save().then(film => res.json(film));
         } catch (err) {
