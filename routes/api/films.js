@@ -36,6 +36,7 @@ router.post('/', auth, async (req, res) => {
       if (!filmExists) {
         try {
           const newFilm = new Film({
+            id: req.body.id,
             user: req.user.id,
             title: req.body.title,
             year: req.body.year,
