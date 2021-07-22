@@ -29,8 +29,17 @@ const FilmSchema = new Schema({
   },
   runtime: {
     type: Number,
-    required: false,
   },
+  genres: [
+    {
+      id: {
+        type: Number,
+      },
+      name: {
+        type: String,
+      },
+    },
+  ],
 });
 
 module.exports = Film = mongoose.model('film', FilmSchema);

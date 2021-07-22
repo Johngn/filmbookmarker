@@ -41,9 +41,8 @@ router.post('/', auth, async (req, res) => {
             overview: req.body.overview,
             poster_path: req.body.poster_path,
             runtime: req.body.runtime,
+            genres: req.body.genres,
           });
-
-          console.log(newFilm);
 
           newFilm.save().then(film => res.json(film));
         } catch (err) {
