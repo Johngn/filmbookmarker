@@ -40,6 +40,16 @@ const FilmSchema = new Schema({
       },
     },
   ],
+  ratings: [
+    {
+      Source: {
+        type: String,
+      },
+      Value: {
+        type: String,
+      },
+    },
+  ],
 });
 
 module.exports = Film = mongoose.model('film', FilmSchema);
