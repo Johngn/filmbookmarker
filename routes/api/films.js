@@ -24,6 +24,7 @@ router.get('/:userID', async (req, res) => {
 // @desc    add film to watchlist
 // @access  Private
 router.post('/', auth, async (req, res) => {
+  console.log(req.body);
   Film.exists(
     {
       title: req.body.title,
